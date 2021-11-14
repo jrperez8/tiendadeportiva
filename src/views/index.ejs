@@ -1,0 +1,76 @@
+<%- include ('partials/_headers'); %>
+
+<div class="container">
+
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <h3>Gestión de Productos</h3>
+          <form action="/add" method="post">
+            <div class="form-floating mb-3 mt-3">
+              <input type="text" class="form-control" placeholder="Ingrese Articulo" name="article">
+              <label for="pwd">Articulo</label>
+            </div>
+            <div class="form-floating mt-3 mb-3">
+              <input type="text" class="form-control" placeholder="Ingrese Cantidad" name="amount">
+              <label for="pwd">Cantidad</label>
+            </div>
+            <div class="form-floating mt-3 mb-3">
+              <input type="text" class="form-control" placeholder="Ingrese Descripcion" name="description"></input>
+              <label for="pwd">Descripción</label>
+            </div>
+            <div class="form-floating mt-3 mb-3">
+              <input type="text" class="form-control" placeholder="Ingrese Color" name="color">
+              <label for="pwd">Color</label>
+            </div>
+            <button class="btn btn-primary" type="submit">
+              Agregar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+     <!-- LIST -->
+     <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>Articulo</th>
+            <th>Cantidad</th>
+            <th>Descripción</th>
+            <th>Color</th>
+            <th>Gestionar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < tasks.length; i++) { %>
+            <tr>
+              <td><%= i + 1%></td>
+              <td><strong><%= tasks[i].article %></strong></td>
+              <td><%= tasks[i].amount %></td>
+              <td><%= tasks[i].description %></td>
+              <td><%= tasks[i].color %></td>
+              <td>               
+                <a href="/delete/<%= tasks[i]._id %>"
+                  class="btn btn-danger mb-1">
+                  Borrar
+                </a>
+                <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">
+                  Editar
+                </a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+
+<%- include ('partials/_footer');%>
